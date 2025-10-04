@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
   /* Use a relative path so this file works when the login folder is served directly */
-  background: url('../../../IMG/background.png') no-repeat center center fixed;
+  background: url('../IMG/background.png') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -106,3 +106,4 @@ button:hover {
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
