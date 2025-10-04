@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Staff</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+  background-image: url('../../../IMG/Bas4.jpg');
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 260px; /* fixed full width */
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(17px);
+      border-right: 1px solid rgba(255, 255, 255, 0.7);
+      transition: width 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+      z-index: 20;
+    }
+    /* disable hover collapse: keep sidebar fixed */
+    .sidebar:hover { width: 260px; }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      color: #000;
+    }
+    .logo img { width: 43px; border-radius: 50%; }
+    .logo h2 { margin-left: 15px; font-size: 1.1rem; font-weight: 600; display: none; }
+    .sidebar:hover .logo h2 { display: block; }
+
+    .links { list-style: none; padding: 0 8px; }
+    .links li {
+      display: flex; align-items: center;
+      border-radius: 4px; padding: 10px;
+      transition: background 0.3s;
+    }
+    .links li:hover { background: rgba(0,0,0,0.05); cursor: pointer; }
+    .links li span { font-size: 24px; color: #000; margin-right: 10px; }
+    .links li a {
+      text-decoration: none; color: #000;
+      font-weight: 500; white-space: nowrap;
+      display: block; /* always show link text */
+    }
+
+    .links li.active {
+      background: #0734bb;
+      border-left: 4px solid #fff;
+    }
+    .links li.active a,
+    .links li.active span { color: #fff; font-weight: 600; }
+
+    .bottom-links { margin-top: auto; }
+
+    /* Content Box */
+    .kotak {
+      max-width: 1200px;
+      width: calc(100% - 320px);
+      min-height: 520px;
+      background: #fbfcff;
+      border: 4px solid #fff;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.1);
+      padding: 20px;
+      margin: 60px auto;
+      opacity: 0.95;
+    }
+
+    .kotak h2 { margin-bottom: 15px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .card p { font-size: 0.95rem; color: #444; }
+  </style>
+</head>
+<body>
+  <!-- Global search bar (inserted) -->
+  <header class="topbar" role="banner">
+    <div class="search-wrap">
+      <input id="globalSearch" class="search-input" type="search" placeholder="Search site..." aria-label="Search">
+      <button class="search-btn" type="button" onclick="globalSearch()" aria-label="Search">Search</button>
+    </div>
+  </header>
+  <style>
+    .topbar{position:fixed;left:260px;right:0;top:0;height:64px;display:flex;align-items:center;padding:0 18px;background:transparent;backdrop-filter:none;z-index:999}
+    .search-wrap{max-width:1100px;width:100%;display:flex;gap:8px;background:#ffffff;padding:8px;border-radius:8px}
+    .search-input{flex:1;padding:8px 12px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;background:#fff}
+    .search-btn{padding:8px 12px;border-radius:8px;border:1px solid #e5e7eb;background:#0b63ff;color:#fff;cursor:pointer}
+  .kotak,.content,main{margin-top:84px}
+  /* ensure main content sits to the right of the fixed sidebar */
+  .kotak, main, .content { margin-left: 260px; }
+    @media(max-width:800px){.topbar{left:0} .kotak,.content,main{margin-left:0}}
+  </style>
+  <script>
+    function globalSearch(){
+      const q=document.getElementById('globalSearch').value.trim();
+      if(!q) return;
+      const found = document.querySelectorAll('body *:not(script):not(style)');
+      for(const el of found){
+        if(el.textContent && el.textContent.toLowerCase().includes(q.toLowerCase())){
+          el.scrollIntoView({behavior:'smooth',block:'center'});
+          el.style.outline='3px solid #ffea00';
+          setTimeout(()=>el.style.outline='',3000);
+          return;
+        }
+      }
+      alert('No results on this page.');
+    }
+  </script>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+  <img src="../../../IMG/PROTON.png" alt="logo">
+      <h2>Staff</h2>
+    </div>
+
+    <ul class="links main-links">
+      <li class="active"><span class="material-symbols-outlined">dashboard</span><a href="dashboard.html">Laman Utama</a></li>
+      <li><span class="material-symbols-outlined">car_rental</span><a href="booking.html">Tempahan</a></li>
+      <li><span class="material-symbols-outlined">notifications</span><a href="notification.html">Notifikasi</a></li>
+      <li><span class="material-symbols-outlined">history</span><a href="history.html">Sejarah Tempahan</a></li>
+    </ul>
+
+    <ul class="links bottom-links">
+      <li><span class="material-symbols-outlined">person</span><a href="profile.html">Profil</a></li>
+      <li class="logout-link"><span class="material-symbols-outlined">logout</span><a href="logout.html">Log Keluar</a></li>
+    </ul>
+  </aside>
+
+  <!-- Content -->
+  <div class="kotak">
+    <h2>Dashboard Staff</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Tempahan Hari Ini</h3>
+        <p>3 tempahan</p>
+      </div>
+      <div class="card">
+        <h3>Notifikasi Baru</h3>
+        <p>2 notifikasi belum dibaca</p>
+      </div>
+      <div class="card">
+        <h3>Jumlah Kenderaan</h3>
+        <p>12 kenderaan tersedia</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
